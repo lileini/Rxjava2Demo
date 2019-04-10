@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });*/
 
-        Flowable.interval(1,TimeUnit.MILLISECONDS)
+        Flowable.interval(1, TimeUnit.MILLISECONDS)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        Log.d(TAG, "accept: "+aLong);
+                        Log.d(TAG, "accept: " + aLong);
                     }
                 });
 
@@ -395,69 +395,74 @@ public class MainActivity extends AppCompatActivity {
                 emitter.onNext(s);
             }
         }).subscribeOn(Schedulers.io());
-    }
+//    }
 
-//    public void onClick(){
-//        final List<File> folders = new ArrayList<>(10);
-//        new Thread() {
-//            @Override
-//            public void run() {
-//                super.run();
-//                for (File folder : folders) {
-//                    File[] files = folder.listFiles();
-//                    for (File file : files) {
-//                        if (file.getName().endsWith(".png")) {
-//                            final Bitmap bitmap = getBitmapFromFile(file);
-//                           MainActivity.this.runOnUiThread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    imageCollectorView.addImage(bitmap);
-//                                }
-//                            });
+//        public void onClick() {
+//
+//            List<File> folders = new ArrayList<>();
+//            new Thread() {
+//                @Override
+//                public void run() {
+//                    super.run();
+//                    for (File folder : folders) {
+//                        File[] files = folder.listFiles();
+//                        for (File file : files) {
+//                            if (file.getName().endsWith(".png")) {
+//                                final Bitmap bitmap = getBitmapFromFile(file);
+//                                MainActivity.this.runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        imageCollectorView.addImage(bitmap);
+//                                    }
+//                                });
+//                            }
 //                        }
 //                    }
 //                }
-//            }
-//        }.start();
+//            }.start();
 //
-//        Observable.fromIterable(folders)
-//                .flatMap(new Function<File, ObservableSource<File>>() {
-//                    @Override
-//                    public ObservableSource<File> apply(File file) throws Exception {
-//                        return Observable.just(file);
-//                    }
-//                })
-//                .filter(new Predicate<File>() {
-//                    @Override
-//                    public boolean test(File file) throws Exception {
-//                        return file.getName().endsWith(".png");
-//                    }
-//                })
-//                .map(new Function<File, Bitmap>() {
-//                    @Override
-//                    public Bitmap apply(File file) throws Exception {
-//                        return getBitmapFromFile(file);
-//                    }
-//                })
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<Bitmap>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
+//            Observable.fromIterable(folders)
+//                    .flatMap(new Function<File, ObservableSource<File>>() {
+//                        @Override
+//                        public ObservableSource<File> apply(File folder) throws Exception {
+//                            return Observable.fromArray(folder.listFiles());
+//                        }
+//                    })
+//                    .filter(new Predicate<File>() {
+//                        @Override
+//                        public boolean test(File file) throws Exception {
+//                            return file.getName().endsWith(".png");
+//                        }
+//                    })
+//                    .map(new Function<File, Bitmap>() {
+//                        @Override
+//                        public Bitmap apply(File file) throws Exception {
+//                            return getBitmapFromFile(file);
+//                        }
+//                    })
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Observer<Bitmap>() {
+//                        @Override
+//                        public void onSubscribe(Disposable d) {
 //
-//                    }
-//                    @Override
-//                    public void onNext(Bitmap bitmap) {
-//                        imageCollectorView.addImage(bitmap);
-//                    }
-//                    @Override
-//                    public void onError(Throwable e) {
+//                        }
 //
-//                    }
-//                    @Override
-//                    public void onComplete() {
+//                        @Override
+//                        public void onNext(Bitmap bitmap) {
+//                            imageCollectorView.addImage(bitmap);
+//                        }
 //
-//                    }
-//                });
-//    }
+//                        @Override
+//                        public void onError(Throwable e) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onComplete() {
+//
+//                        }
+//                    });
+//        }
+    }
 }
