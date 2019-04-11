@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity {
                 emitter.onNext(s);
             }
         }).subscribeOn(Schedulers.io());
-//    }
+    }
 
 //        public void onClick() {
 //
@@ -464,5 +464,5 @@ public class MainActivity extends AppCompatActivity {
 //                        }
 //                    });
 //        }
-    }
+//    }
 }
